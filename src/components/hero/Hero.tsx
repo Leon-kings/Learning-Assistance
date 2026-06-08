@@ -1,3 +1,4 @@
+
 // /* eslint-disable no-case-declarations */
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 // /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -58,8 +59,6 @@
 //     subtitle: "Earn recognized certificates",
 //   },
 // ];
-
-
 
 // // Start Learning Modal Component
 // interface StartLearningModalProps {
@@ -819,7 +818,6 @@
 //   }, [controls, isInView]);
 
 //   const features = [
-
 //     {
 //       icon: QuizIcon,
 //       title:
@@ -837,7 +835,6 @@
 //           ? "24/7 AI tutor that explains concepts in simple Kinyarwanda"
 //           : "Umurezi wa AI uboneka buri gihe usobanura mu Kinyarwanda",
 //     },
-
 //   ];
 
 //   return (
@@ -1118,6 +1115,8 @@
 //   );
 // };
 
+
+
 /* eslint-disable no-case-declarations */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -1150,32 +1149,32 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import GradeIcon from "@mui/icons-material/Grade";
 
-// Images for carousel
-const slideImages = [
+// Images for carousel with multilingual titles
+const getSlideImages = (language: string) => [
   {
     url: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop",
-    title: "Interactive Learning",
-    subtitle: "Engage with dynamic content",
+    title: language === "en" ? "Interactive Learning" : language === "fr" ? "Apprentissage Interactif" : "Kwiga Mu Buryo Bwimbitse",
+    subtitle: language === "en" ? "Engage with dynamic content" : language === "fr" ? "Interagissez avec du contenu dynamique" : "Koresha ibikoresho bihuje n'igihe",
   },
   {
     url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop",
-    title: "Expert Instructors",
-    subtitle: "Learn from the best",
+    title: language === "en" ? "Expert Instructors" : language === "fr" ? "Instructeurs Experts" : "Abarezi B'inzobere",
+    subtitle: language === "en" ? "Learn from the best" : language === "fr" ? "Apprenez des meilleurs" : "Wiga ku bahanga",
   },
   {
     url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop",
-    title: "Study Anywhere",
-    subtitle: "Access on any device",
+    title: language === "en" ? "Study Anywhere" : language === "fr" ? "Étudiez N'importe Où" : "Wiga Aho Uhari Hose",
+    subtitle: language === "en" ? "Access on any device" : language === "fr" ? "Accédez sur n'importe quel appareil" : "Koresha kuri buri kiganiro",
   },
   {
     url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop",
-    title: "AI-Powered Tools",
-    subtitle: "Smart learning assistance",
+    title: language === "en" ? "AI-Powered Tools" : language === "fr" ? "Outils Alimentés par l'IA" : "Ibikoresho Bikoresheje AI",
+    subtitle: language === "en" ? "Smart learning assistance" : language === "fr" ? "Assistance d'apprentissage intelligente" : "Ubufasha bwo kwiga bwihariye",
   },
   {
     url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop",
-    title: "Get Certified",
-    subtitle: "Earn recognized certificates",
+    title: language === "en" ? "Get Certified" : language === "fr" ? "Obtenez une Certification" : "Habona Ibyemezo",
+    subtitle: language === "en" ? "Earn recognized certificates" : language === "fr" ? "Obtenez des certificats reconnus" : "Habona ibyemezo byemewe",
   },
 ];
 
@@ -1194,30 +1193,26 @@ const StartLearningModal = ({
 }: StartLearningModalProps) => {
   const { language } = useLanguage();
 
-  const requirements = [
+  const getRequirements = () => [
     {
       icon: <SchoolIcon className="text-sm" />,
-      text:
-        language === "en"
-          ? "Basic computer or smartphone"
-          : "Mudasobwa cyangwa telefoni",
+      text: language === "en" ? "Basic computer or smartphone" : language === "fr" ? "Ordinateur ou smartphone de base" : "Mudasobwa cyangwa telefoni",
     },
     {
       icon: <VerifiedIcon className="text-sm" />,
-      text: language === "en" ? "Internet connection" : "Internet",
+      text: language === "en" ? "Internet connection" : language === "fr" ? "Connexion Internet" : "Internet",
     },
     {
       icon: <GradeIcon className="text-sm" />,
-      text: language === "en" ? "Willingness to learn" : "Ubuyobozi bwo kwiga",
+      text: language === "en" ? "Willingness to learn" : language === "fr" ? "Volonté d'apprendre" : "Ubuyobozi bwo kwiga",
     },
     {
       icon: <SupportAgentIcon className="text-sm" />,
-      text:
-        language === "en"
-          ? "No prior experience needed"
-          : "Nta bumenyi busabwa",
+      text: language === "en" ? "No prior experience needed" : language === "fr" ? "Aucune expérience préalable requise" : "Nta bumenyi busabwa",
     },
   ];
+
+  const requirements = getRequirements();
 
   if (!isOpen) return null;
 
@@ -1250,11 +1245,15 @@ const StartLearningModal = ({
                     <h2 className="text-2xl font-bold text-white">
                       {language === "en"
                         ? "Start Your Learning Journey"
+                        : language === "fr"
+                        ? "Commencez Votre Parcours d'Apprentissage"
                         : "Tangira Urugendo Rwawe rwo Kwiga"}
                     </h2>
                     <p className="text-sm text-white/80 mt-1">
                       {language === "en"
                         ? "Join thousands of students learning in Kinyarwanda"
+                        : language === "fr"
+                        ? "Rejoignez des milliers d'étudiants apprenant en Kinyarwanda"
                         : "Injira mu itsinda ry'abanyeshuri 10,000+ biga mu Kinyarwanda"}
                     </p>
                   </div>
@@ -1276,6 +1275,8 @@ const StartLearningModal = ({
                     <VerifiedIcon className="text-primary-500" />
                     {language === "en"
                       ? "What You Need"
+                      : language === "fr"
+                      ? "Ce Dont Vous Avez Besoin"
                       : "Ibikurikira Birakenewe"}
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1313,7 +1314,8 @@ const StartLearningModal = ({
 // Image Carousel Component
 const ImageCarousel = ({ darkMode }: { darkMode: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  useLanguage();
+  const { language } = useLanguage();
+  const slideImages = getSlideImages(language);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % slideImages.length);
@@ -1479,20 +1481,14 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
         if (!value) {
           setErrors((prev) => ({
             ...prev,
-            name:
-              language === "en"
-                ? "Name is required"
-                : "Izina ntabwo rishobora kuba ubusa",
+            name: language === "en" ? "Name is required" : language === "fr" ? "Le nom est requis" : "Izina ntabwo rishobora kuba ubusa",
           }));
           return false;
         }
         if (value.length < 2) {
           setErrors((prev) => ({
             ...prev,
-            name:
-              language === "en"
-                ? "Name must be at least 2 characters"
-                : "Izina rigomba kuba byibuze inyuguti 2",
+            name: language === "en" ? "Name must be at least 2 characters" : language === "fr" ? "Le nom doit comporter au moins 2 caractères" : "Izina rigomba kuba byibuze inyuguti 2",
           }));
           return false;
         }
@@ -1503,17 +1499,14 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
         if (!value) {
           setErrors((prev) => ({
             ...prev,
-            email:
-              language === "en"
-                ? "Email is required"
-                : "Email ntabwo ishobora kuba ubusa",
+            email: language === "en" ? "Email is required" : language === "fr" ? "L'email est requis" : "Email ntabwo ishobora kuba ubusa",
           }));
           return false;
         }
         if (!emailRegex.test(value)) {
           setErrors((prev) => ({
             ...prev,
-            email: language === "en" ? "Invalid email format" : "Email sibyo",
+            email: language === "en" ? "Invalid email format" : language === "fr" ? "Format d'email invalide" : "Email sibyo",
           }));
           return false;
         }
@@ -1524,20 +1517,14 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
         if (!value) {
           setErrors((prev) => ({
             ...prev,
-            phone:
-              language === "en"
-                ? "Phone number is required"
-                : "Telefone ntabwo ishobora kuba ubusa",
+            phone: language === "en" ? "Phone number is required" : language === "fr" ? "Le numéro de téléphone est requis" : "Telefone ntabwo ishobora kuba ubusa",
           }));
           return false;
         }
         if (!phoneRegex.test(value)) {
           setErrors((prev) => ({
             ...prev,
-            phone:
-              language === "en"
-                ? "Phone number must be 10 digits"
-                : "Telefone igomba kuba inyuguti 10",
+            phone: language === "en" ? "Phone number must be 10 digits" : language === "fr" ? "Le numéro de téléphone doit comporter 10 chiffres" : "Telefone igomba kuba inyuguti 10",
           }));
           return false;
         }
@@ -1547,20 +1534,14 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
         if (!value) {
           setErrors((prev) => ({
             ...prev,
-            message:
-              language === "en"
-                ? "Message is required"
-                : "Ubutumwa ntabwo bushobora kuba ubusa",
+            message: language === "en" ? "Message is required" : language === "fr" ? "Le message est requis" : "Ubutumwa ntabwo bushobora kuba ubusa",
           }));
           return false;
         }
         if (value.length < 10) {
           setErrors((prev) => ({
             ...prev,
-            message:
-              language === "en"
-                ? "Message must be at least 10 characters"
-                : "Ubutumwa bugomba kuba byibuze inyuguti 10",
+            message: language === "en" ? "Message must be at least 10 characters" : language === "fr" ? "Le message doit comporter au moins 10 caractères" : "Ubutumwa bugomba kuba byibuze inyuguti 10",
           }));
           return false;
         }
@@ -1606,9 +1587,10 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
         if (response.status === 200) {
           setSubmitStatus({
             type: "success",
-            message:
-              language === "en"
+            message: language === "en"
                 ? "Message sent successfully! We will contact you soon."
+                : language === "fr"
+                ? "Message envoyé avec succès! Nous vous contacterons bientôt."
                 : "Ubutumwa bwawe bwatumwe neza! Tuzaguhuza vuba.",
           });
           setFormData({ name: "", email: "", phone: "", message: "" });
@@ -1627,9 +1609,10 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
       } catch (error) {
         setSubmitStatus({
           type: "error",
-          message:
-            language === "en"
+          message: language === "en"
               ? "Failed to send message. Please try again later."
+              : language === "fr"
+              ? "Échec de l'envoi du message. Veuillez réessayer plus tard."
               : "Ubutumwa ntabwo bwatumwe. Ongera ugerageze nyuma.",
         });
       } finally {
@@ -1666,11 +1649,13 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                 <div className="flex justify-between items-center">
                   <div>
                     <h2 className="text-2xl font-bold text-white">
-                      {language === "en" ? "Contact Us" : "Twandikire"}
+                      {language === "en" ? "Contact Us" : language === "fr" ? "Contactez-Nous" : "Twandikire"}
                     </h2>
                     <p className="text-sm text-white/80 mt-1">
                       {language === "en"
                         ? "We'd love to hear from you!"
+                        : language === "fr"
+                        ? "Nous serions ravis d'avoir de vos nouvelles!"
                         : "Twishimiye kumva ubutumwa bwawe!"}
                     </p>
                   </div>
@@ -1688,7 +1673,7 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                   <label
                     className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    {language === "en" ? "Full Name" : "Izina ryuzuye"} *
+                    {language === "en" ? "Full Name" : language === "fr" ? "Nom Complet" : "Izina ryuzuye"} *
                   </label>
                   <div className="relative">
                     <PersonIcon
@@ -1718,6 +1703,8 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                       }`}
                       placeholder={
                         language === "en"
+                          ? "Jean Paul Mukasanga"
+                          : language === "fr"
                           ? "Jean Paul Mukasanga"
                           : "Mukasanga Jean Paul"
                       }
@@ -1784,7 +1771,7 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                   <label
                     className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    {language === "en" ? "Phone Number" : "Telefone"} *
+                    {language === "en" ? "Phone Number" : language === "fr" ? "Numéro de Téléphone" : "Telefone"} *
                   </label>
                   <div className="relative">
                     <PhoneIcon
@@ -1830,7 +1817,7 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                   <label
                     className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"}`}
                   >
-                    {language === "en" ? "Message" : "Ubutumwa"} *
+                    {language === "en" ? "Message" : language === "fr" ? "Message" : "Ubutumwa"} *
                   </label>
                   <div className="relative">
                     <MessageIcon
@@ -1863,6 +1850,8 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                       placeholder={
                         language === "en"
                           ? "Tell us how we can help you..."
+                          : language === "fr"
+                          ? "Dites-nous comment nous pouvons vous aider..."
                           : "Tubwire uko twagufasha..."
                       }
                     />
@@ -1906,7 +1895,7 @@ const ContactModal = ({ isOpen, onClose, darkMode }: ContactModalProps) => {
                   ) : (
                     <>
                       <SendIcon className="text-sm" />
-                      {language === "en" ? "Send Message" : "Tuma Ubutumwa"}
+                      {language === "en" ? "Send Message" : language === "fr" ? "Envoyer le Message" : "Tuma Ubutumwa"}
                     </>
                   )}
                 </motion.button>
@@ -1939,19 +1928,20 @@ export const Hero = () => {
   const features = [
     {
       icon: QuizIcon,
-      title:
-        language === "en" ? "AI-Powered Quizzes" : "Ibibazo bikoresheje AI",
-      description:
-        language === "en"
+      title: language === "en" ? "AI-Powered Quizzes" : language === "fr" ? "Quiz Alimentés par l'IA" : "Ibibazo bikoresheje AI",
+      description: language === "en"
           ? "Generate quizzes from any document with automatic grading"
+          : language === "fr"
+          ? "Générez des quiz à partir de n'importe quel document avec notation automatique"
           : "Kurema ibibazo uko wifuza hamwe n'amanota akora automatic",
     },
     {
       icon: PsychologyIcon,
-      title: language === "en" ? "AI Tutor Assistant" : "Umurezi wa AI",
-      description:
-        language === "en"
+      title: language === "en" ? "AI Tutor Assistant" : language === "fr" ? "Assistant Tuteur IA" : "Umurezi wa AI",
+      description: language === "en"
           ? "24/7 AI tutor that explains concepts in simple Kinyarwanda"
+          : language === "fr"
+          ? "Tuteur IA 24/7 qui explique les concepts dans un Kinyarwanda simple"
           : "Umurezi wa AI uboneka buri gihe usobanura mu Kinyarwanda",
     },
   ];
@@ -1996,6 +1986,8 @@ export const Hero = () => {
                 >
                   {language === "en"
                     ? "AI-Powered Learning Platform"
+                    : language === "fr"
+                    ? "Plateforme d'Apprentissage Alimentée par l'IA"
                     : "Ihuriro ryo kwiga rikoresheje AI"}
                 </span>
               </motion.div>
@@ -2011,6 +2003,14 @@ export const Hero = () => {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">
                       {" "}
                       Anywhere
+                    </span>
+                  </>
+                ) : language === "fr" ? (
+                  <>
+                    Apprenez à Tout Moment,
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-purple-600">
+                      {" "}
+                      N'Importe Où
                     </span>
                   </>
                 ) : (
@@ -2031,6 +2031,8 @@ export const Hero = () => {
               >
                 {language === "en"
                   ? "Access quality education in Kinyarwanda with AI-powered learning, personalized tutoring, and verified certificates."
+                  : language === "fr"
+                  ? "Accédez à une éducation de qualité en Kinyarwanda avec l'apprentissage alimenté par l'IA, un tutorat personnalisé et des certificats vérifiés."
                   : "Ibigo byiza mu Kinyarwanda hamwe na AI, umurezi wawe bwite, n'ibyemezo byemewe."}
               </p>
 
@@ -2050,6 +2052,8 @@ export const Hero = () => {
                   <span className="text-lg">📋</span>
                   {language === "en"
                     ? "Test Your Skills & Find Bugs!"
+                    : language === "fr"
+                    ? "Testez Vos Compétences & Trouvez des Bugs!"
                     : "Gerageza Ubumenyi Bwawe & Shakisha Amakosa!"}
                 </h3>
                 <p
@@ -2057,23 +2061,25 @@ export const Hero = () => {
                 >
                   {language === "en"
                     ? "This platform helps you test your skills by generating custom tests and quizzes. You can also find and debug issues in your learning system to improve your results."
+                    : language === "fr"
+                    ? "Cette plateforme vous aide à tester vos compétences en générant des tests et des quiz personnalisés. Vous pouvez également trouver et déboguer des problèmes dans votre système d'apprentissage pour améliorer vos résultats."
                     : "Uru rubuga rubafasha kugerageza ubumenyi bwawe mukora ibizamini n'ibibazo. Ushobora kandi gushakisha amakosa muri sisitemu yawe yo kwiga kugirango ugire ibyiza binini."}
                 </p>
                 <div className="flex gap-3 mt-3">
                   <span
                     className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-blue-800/50 text-blue-300" : "bg-blue-100 text-blue-700"}`}
                   >
-                    📝 Generate Tests
+                    {language === "en" ? "📝 Generate Tests" : language === "fr" ? "📝 Générer des Tests" : "📝 Generate Tests"}
                   </span>
                   <span
                     className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-blue-800/50 text-blue-300" : "bg-blue-100 text-blue-700"}`}
                   >
-                    🐛 Find Bugs
+                    {language === "en" ? "🐛 Find Bugs" : language === "fr" ? "🐛 Trouver des Bugs" : "🐛 Find Bugs"}
                   </span>
                   <span
                     className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-blue-800/50 text-blue-300" : "bg-blue-100 text-blue-700"}`}
                   >
-                    📊 Track Results
+                    {language === "en" ? "📊 Track Results" : language === "fr" ? "📊 Suivre les Résultats" : "📊 Track Results"}
                   </span>
                 </div>
               </div>
@@ -2088,28 +2094,11 @@ export const Hero = () => {
                 >
                   {language === "en"
                     ? "Start Learning Free"
+                    : language === "fr"
+                    ? "Commencez à Apprendre Gratuitement"
                     : "Tangira Kwiga Ubuntu"}
                   <ArrowForwardIcon className="text-sm" />
                 </motion.button>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"}`}
-                >
-                  🎓 Graduated
-                </span>
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"}`}
-                >
-                  Any Curriculum
-                </span>
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${darkMode ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"}`}
-                >
-                  🤖 AI Tutor Included
-                </span>
               </div>
             </motion.div>
 
@@ -2132,10 +2121,10 @@ export const Hero = () => {
                   <PsychologyIcon className="text-purple-500" />
                   <div>
                     <p className="text-xs font-semibold text-gray-900 dark:text-white">
-                      {language === "en" ? "AI Tutor Online" : "Umurezi wa AI"}
+                      {language === "en" ? "AI Tutor Online" : language === "fr" ? "Tuteur IA en Ligne" : "Umurezi wa AI"}
                     </p>
                     <p className="text-xs text-green-600">
-                      {language === "en" ? "24/7 Available" : "Buri gihe"}
+                      {language === "en" ? "24/7 Available" : language === "fr" ? "Disponible 24/7" : "Buri gihe"}
                     </p>
                   </div>
                 </div>
@@ -2152,11 +2141,15 @@ export const Hero = () => {
                     <p className="text-xs font-semibold text-gray-900 dark:text-white">
                       {language === "en"
                         ? "Certificate Ready"
+                        : language === "fr"
+                        ? "Certificat Prêt"
                         : "Ibyemezo Biragutegereje"}
                     </p>
                     <p className="text-xs text-green-600">
                       {language === "en"
                         ? "Upon Completion"
+                        : language === "fr"
+                        ? "À la Fin"
                         : "Uzarangiza ushobora kubona"}
                     </p>
                   </div>
@@ -2184,6 +2177,8 @@ export const Hero = () => {
               >
                 {language === "en"
                   ? "Why Choose E-Learning?"
+                  : language === "fr"
+                  ? "Pourquoi Choisir E-Learning?"
                   : "Kuki Wahitamo E-Learning?"}
               </h2>
               <p
@@ -2191,6 +2186,8 @@ export const Hero = () => {
               >
                 {language === "en"
                   ? "We provide quality education tailored for students"
+                  : language === "fr"
+                  ? "Nous fournissons une éducation de qualité adaptée aux étudiants"
                   : "Duha amasomo meza yujuje ibikenewe n'abanyeshuri"}
               </p>
             </div>
@@ -2208,12 +2205,6 @@ export const Hero = () => {
         </div>
       </section>
 
-      {/* Modals */}
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        darkMode={darkMode}
-      />
 
       <StartLearningModal
         isOpen={isStartLearningModalOpen}
